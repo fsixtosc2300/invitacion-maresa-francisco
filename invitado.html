@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>¡Estás Invitado!</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>¡Estás Invitado!</title>
+<style>
     body {
       background: #fff0f5;
       font-family: sans-serif;
@@ -32,33 +33,45 @@
   </style>
 </head>
 <body>
-  <h1 class="nombre"></h1>
-  <img src="img/invitacion.jpg" alt="Invitación Mares y Francisco" />
-  <div class="botones">
-    <button onclick="agregarCalendario()">🗓 Agregar al calendario</button>
-    <button onclick="descargarPDF()">📥 Descargar PDF</button>
-    <button onclick="confirmarAsistencia()">✅ Confirmar asistencia</button>
-  </div>
+<h1 class="nombre"></h1>
+<img alt="Invitación Mares y Francisco" src="img/invitacion.jpg"/>
+<div class="botones">
+<button onclick="agregarCalendario()">🗓 Agregar al calendario</button>
+<button onclick="descargarPDF()">📥 Descargar PDF</button>
+<button onclick="confirmarAsistencia()">✅ Confirmar asistencia</button>
+</div>
+<script>
+function confirmarAsistencia() {
+  const form = document.createElement("form");
+  form.method = "POST";
+  form.action = "https://docs.google.com/forms/d/e/1FAIpQLScc6sTb-QgrZg2sy2tDq0DyVXkIpJU4zMmJpFIVU9yxde5utw/formResponse";
+  form.target = "hidden_iframe";
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const nombre = params.get("nombre");
-    if (nombre) {
-      document.querySelector(".nombre").textContent = `¡Hola, ${nombre}!`;
-    }
+  const params = new URLSearchParams(window.location.search);
+  const nombre = params.get("nombre");
+  const codigo = params.get("codigo") || "NO_CODIGO";
+  const fecha = new Date().toLocaleString();
 
-    function agregarCalendario() {
-      const link = "https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Mares+y+Francisco&dates=20251025T180000Z/20251025T230000Z&details=Nos+casamos+el+25+de+octubre+%F0%9F%92%8D&location=CDMX&sf=true&output=xml";
-      window.open(link, "_blank");
-    }
+  const entryName = document.createElement("input");
+  entryName.name = "entry.1216857109";
+  entryName.value = nombre;
+  form.appendChild(entryName);
 
-    function descargarPDF() {
-      alert("Esta función estará disponible pronto.");
-    }
+  const entryCodigo = document.createElement("input");
+  entryCodigo.name = "entry.2030657868";
+  entryCodigo.value = codigo;
+  form.appendChild(entryCodigo);
 
-    function confirmarAsistencia() {
-      alert("Gracias por confirmar tu asistencia 🥰");
-    }
-  </script>
-</body>
+  const entryFecha = document.createElement("input");
+  entryFecha.name = "entry.1114794088";
+  entryFecha.value = fecha;
+  form.appendChild(entryFecha);
+
+  document.body.appendChild(form);
+  form.submit();
+
+  alert("Gracias por confirmar tu asistencia 🥰");
+}
+</script>
+<iframe name="hidden_iframe" style="display:none;"></iframe></body>
 </html>
