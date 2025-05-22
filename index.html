@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Invitación a Nuestra Boda</title>
+  <script src="js/acceso.js" defer></script>
+  <style>
+    body {
+      background-color: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+      flex-direction: column;
+    }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bienvenidos a la invitación de Mares y Francisco 💍</h1>
+  <p>Introduce tu código de acceso:</p>
+  <input type="text" id="codigo" placeholder="Ej. familia_garcia" />
+  <button onclick="validarCodigo()">Ver invitación</button>
+</body>
+</html>
