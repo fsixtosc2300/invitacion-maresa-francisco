@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Estás Invitado!</title>
+  <style>
+    body {
+      background: #fff0f5;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .nombre {
+      font-size: 1.5em;
+      color: #d63384;
+    }
+    .botones button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff8fb1;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="nombre"></h1>
+  <img src="img/invitacion.jpg" alt="Invitación Mares y Francisco" />
+  <div class="botones">
+    <button onclick="agregarCalendario()">🗓 Agregar al calendario</button>
+    <button onclick="descargarPDF()">📥 Descargar PDF</button>
+    <button onclick="confirmarAsistencia()">✅ Confirmar asistencia</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nombre = params.get("nombre");
+    if (nombre) {
+      document.querySelector(".nombre").textContent = `¡Hola, ${nombre}!`;
+    }
+
+    function agregarCalendario() {
+      const link = "https://www.google.com/calendar/render?action=TEMPLATE&text=Boda+Mares+y+Francisco&dates=20251025T180000Z/20251025T230000Z&details=Nos+casamos+el+25+de+octubre+%F0%9F%92%8D&location=CDMX&sf=true&output=xml";
+      window.open(link, "_blank");
+    }
+
+    function descargarPDF() {
+      alert("Esta función estará disponible pronto.");
+    }
+
+    function confirmarAsistencia() {
+      alert("Gracias por confirmar tu asistencia 🥰");
+    }
+  </script>
+</body>
+</html>
