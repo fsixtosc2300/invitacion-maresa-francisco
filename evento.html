@@ -1,11 +1,11 @@
-<!-- evento.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Nuestra Boda - Mares y Francisco</title>
+  <title>Tu Invitación</title>
   <style>
     body {
+      margin: 0;
       background-color: #fff0f5;
       display: flex;
       justify-content: center;
@@ -13,13 +13,23 @@
       height: 100vh;
     }
     embed {
-      border: none;
       width: 90%;
       height: 95vh;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <embed src="img/invitacion.pdf" type="application/pdf">
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const codigo = params.get('codigo');
+    const codigosValidos = ["familia_hernandez", "familia_rodriguez", "familia_garcia"];
+
+    if (codigosValidos.includes(codigo)) {
+      document.write(`<embed src="pdf/${codigo}.pdf" type="application/pdf" />`);
+    } else {
+      document.write(`<h2 style="color: red;">Código no válido</h2>`);
+    }
+  </script>
 </body>
 </html>
